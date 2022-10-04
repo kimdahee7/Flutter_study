@@ -66,6 +66,18 @@ class RandomWordsState extends State<RandomWords> {
           return Scaffold(
             appBar: AppBar(
               title: const Text('Saved Suggestions'),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.home),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SecondRoute()),
+                    );
+                  },
+                  tooltip: 'flutter layout',
+                ),
+              ],
             ),
             body: ListView(children: divided),
           );
@@ -118,5 +130,16 @@ class RandomWordsState extends State<RandomWords> {
 class RandomWords extends StatefulWidget {
   @override
   RandomWordsState createState() => RandomWordsState();
+}
+
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Flutter layout"),
+        ),
+      );
+  }
 }
 
