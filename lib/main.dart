@@ -135,11 +135,117 @@ class RandomWords extends StatefulWidget {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Color color = Theme.of(context).primaryColor;
+
+    //버튼 row2
+    Widget buttonSection = Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildButtonColum(color, Icons.call, 'CALL'),
+          _buildButtonColum(color, Icons.near_me, 'ROUTE'),
+          _buildButtonColum(color, Icons.share, 'SHARE'),
+        ],
+      ),
+    );
+
+    //텍스트
+    Widget textSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: const Text(
+        'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+            'Alps. Situated 1,578 meters above sea level, it is one of the '
+            'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+            'half-hour walk through pastures and pine forest, leads you to the '
+            'lake, which warms to 20 degrees Celsius in the summer. Activities '
+            'enjoyed here include rowing, and riding the summer toboggan run.',
+        softWrap: true, // 텍스트가 영역을 넘어갈 경우 줄바꿈 여부
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter layout"),
+        title: const Text("Flutter layout"),
         ),
-      );
+      body: ListView(
+        children: [
+          Image.asset(
+            'images/lake.jpg',
+            width: 600,
+            height: 240,
+            fit: BoxFit.cover,
+            //가능한 작게 하지만 렌더 박스 전체를 덮을 정도로만 작아야 한다는 것
+          ),
+          _titleSection(),
+          buttonSection,
+          textSection,
+        ],
+      ),
+    );
   }
 }
+
+//타이틀 row
+Widget _titleSection() {
+  return Container(
+    padding: const EdgeInsets.all(32),
+    child: Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: const Text(
+                  'Oeschinen Lake Campground',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(
+                'Kandersteg, Switzerland',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Icon(
+          Icons.star,
+          color: Colors.red[500],
+        ),
+        const Text('41'),
+      ],
+    ),
+  );
+}
+
+//버튼 row
+//색,아이콘,텍스트를 인수로 받아 주어진 색으로 칠한 위젯을 반환하는 메소드
+Column _buildButtonColum(Color color, IconData icon, String label) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Icon(icon, color: color),
+      Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: color,
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+
+
 
