@@ -133,11 +133,15 @@ class RandomWordsState extends State<RandomWords> {
 }
 
 class RandomWords extends StatefulWidget {
+  const RandomWords({super.key});
+
   @override
   RandomWordsState createState() => RandomWordsState();
 }
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -195,6 +199,13 @@ class _MainScreenState extends State<MainScreen> {
           _titleSection(),
           buttonSection,
           textSection,
+          //페이지 route 전환 애니메이션 버튼
+          ElevatedButton(
+            child: const Text('Go'),
+            onPressed: () {
+              Navigator.of(context).push(_createRoute());
+            },
+          ),
         ],
       ),
         //이미지 opacity를 변경하는 floating button
@@ -270,6 +281,8 @@ Column _buildButtonColum(Color color, IconData icon, String label) {
 
 //별모양 아이콘 누르기
 class FavoriteWidget extends StatefulWidget {
+  const FavoriteWidget({super.key});
+
   @override
   _FavoriteWidgetState createState() => _FavoriteWidgetState();
 }
@@ -311,5 +324,38 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
         _isFavorited = true;
       }
     });
+  }
+}
+
+//페이지 route 전환 애니메이션
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const AnimationScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child){
+      var begin = const Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+      //Tween과 CurveTween chain()으로 결합
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      //var offsetAnimation = animation.drive(tween);
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+class AnimationScreen extends StatelessWidget {
+  const AnimationScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: const Center(
+        child: Text('AnimationScreen'),
+      ),
+    );
   }
 }
