@@ -143,6 +143,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  bool _visible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -180,18 +181,32 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: ListView(
         children: [
-          Image.asset(
-            'images/lake.jpg',
-            width: 600,
-            height: 240,
-            fit: BoxFit.cover,
-            //가능한 작게 하지만 렌더 박스 전체를 덮을 정도로만 작아야 한다는 것
-          ),
+          AnimatedOpacity(
+            opacity: _visible ? 1.0 : 0.0,
+            duration: Duration(milliseconds: 500),
+            child: Image.asset(
+                'images/lake.jpg',
+                width: 600,
+                height: 240,
+                fit: BoxFit.cover,
+                //가능한 작게 하지만 렌더 박스 전체를 덮을 정도로만 작아야 한다는 것
+              ),
+            ),
           _titleSection(),
           buttonSection,
           textSection,
         ],
       ),
+        //이미지 opacity를 변경하는 floating button
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              _visible =!_visible;
+            });
+          },
+          tooltip: 'Toggle Opacity',
+          child: const Icon(Icons.flip),
+        )
     );
   }
 }
