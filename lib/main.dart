@@ -9,17 +9,17 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
-       title: 'Startup Name Generator',
-       //App 테마 색상 흰색으로 변경하기
-       theme: ThemeData(
+      title: 'Startup Name Generator',
+      //App 테마 색상 흰색으로 변경하기
+      theme: ThemeData(
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
         ),
-       ),
-       home: RandomWords(),
+      ),
+      home: RandomWords(),
     );
   }
 }
@@ -28,8 +28,9 @@ class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _saved = <WordPair>{}; //Set
   final _biggerFont = const TextStyle(fontSize: 18.0);
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Startup Name Generator"),
@@ -45,24 +46,26 @@ class RandomWordsState extends State<RandomWords> {
     );
   }
 
-  void _pushSaved(){
+  void _pushSaved() {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
           final tiles = _saved.map(
-              (pair){
-                return ListTile(
-                  title: Text(
-                    pair.asPascalCase,
-                    style: _biggerFont,
-                  ),
-                );
-              },
+            (pair) {
+              return ListTile(
+                title: Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
           );
-          final divided = tiles.isNotEmpty ? ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList() : <Widget>[];
+          final divided = tiles.isNotEmpty
+              ? ListTile.divideTiles(
+                  context: context,
+                  tiles: tiles,
+                ).toList()
+              : <Widget>[];
           return Scaffold(
             appBar: AppBar(
               title: const Text('Saved Suggestions'),
@@ -72,7 +75,7 @@ class RandomWordsState extends State<RandomWords> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SecondRoute()),
+                      MaterialPageRoute(builder: (context) => MainScreen()),
                     );
                   },
                   tooltip: 'flutter layout',
@@ -81,12 +84,12 @@ class RandomWordsState extends State<RandomWords> {
             ),
             body: ListView(children: divided),
           );
-          },
+        },
       ),
     );
   }
 
-  Widget _buildRow(WordPair pair){
+  Widget _buildRow(WordPair pair) {
     final alreadySaved = _saved.contains(pair);
     return ListTile(
       title: Text(
@@ -102,9 +105,9 @@ class RandomWordsState extends State<RandomWords> {
         setState(() {
           //setState()를 호출하면 State 객체의 build() 메서드가 호출되고
           //그 결과로 UI를 갱신하게 된다.
-          if(alreadySaved){
+          if (alreadySaved) {
             _saved.remove(pair);
-          }else{
+          } else {
             _saved.add(pair);
           }
         });
@@ -116,7 +119,8 @@ class RandomWordsState extends State<RandomWords> {
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return Divider(); /*2*/
+          if (i.isOdd) return Divider();
+          /*2*/
 
           final index = i ~/ 2; /*3*/
           if (index >= _suggestions.length) {
@@ -132,7 +136,7 @@ class RandomWords extends StatefulWidget {
   RandomWordsState createState() => RandomWordsState();
 }
 
-class SecondRoute extends StatelessWidget {
+class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color color = Theme.of(context).primaryColor;
@@ -154,11 +158,11 @@ class SecondRoute extends StatelessWidget {
       padding: const EdgeInsets.all(32),
       child: const Text(
         'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-            'Alps. Situated 1,578 meters above sea level, it is one of the '
-            'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
-            'half-hour walk through pastures and pine forest, leads you to the '
-            'lake, which warms to 20 degrees Celsius in the summer. Activities '
-            'enjoyed here include rowing, and riding the summer toboggan run.',
+        'Alps. Situated 1,578 meters above sea level, it is one of the '
+        'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+        'half-hour walk through pastures and pine forest, leads you to the '
+        'lake, which warms to 20 degrees Celsius in the summer. Activities '
+        'enjoyed here include rowing, and riding the summer toboggan run.',
         softWrap: true, // 텍스트가 영역을 넘어갈 경우 줄바꿈 여부
       ),
     );
@@ -166,7 +170,7 @@ class SecondRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Flutter layout"),
-        ),
+      ),
       body: ListView(
         children: [
           Image.asset(
@@ -287,10 +291,3 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
     });
   }
 }
-
-
-
-
-
-
-
