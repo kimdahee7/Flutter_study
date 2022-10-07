@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter/animation.dart';
 
 //첫 번째 앱 작성하기
 void main() => runApp(const MyApp());
@@ -136,7 +137,13 @@ class RandomWords extends StatefulWidget {
   RandomWordsState createState() => RandomWordsState();
 }
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+
   @override
   Widget build(BuildContext context) {
     Color color = Theme.of(context).primaryColor;
