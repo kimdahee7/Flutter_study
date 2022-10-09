@@ -180,15 +180,15 @@ class _MainScreenState extends State<MainScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Flutter layout"),
-      ),
-      body: ListView(
-        children: [
-          AnimatedOpacity(
-            opacity: _visible ? 1.0 : 0.0,
-            duration: Duration(milliseconds: 500),
-            child: Image.asset(
+        appBar: AppBar(
+          title: const Text("Flutter layout"),
+        ),
+        body: ListView(
+          children: [
+            AnimatedOpacity(
+              opacity: _visible ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 500),
+              child: Image.asset(
                 'images/lake.jpg',
                 width: 600,
                 height: 240,
@@ -196,29 +196,28 @@ class _MainScreenState extends State<MainScreen> {
                 //가능한 작게 하지만 렌더 박스 전체를 덮을 정도로만 작아야 한다는 것
               ),
             ),
-          _titleSection(),
-          buttonSection,
-          textSection,
-          //페이지 route 전환 애니메이션 버튼
-          ElevatedButton(
-            child: const Text('Go'),
-            onPressed: () {
-              Navigator.of(context).push(_createRoute());
-            },
-          ),
-        ],
-      ),
+            _titleSection(),
+            buttonSection,
+            textSection,
+            //페이지 route 전환 애니메이션 버튼
+            ElevatedButton(
+              child: const Text('Go'),
+              onPressed: () {
+                Navigator.of(context).push(_createRoute());
+              },
+            ),
+          ],
+        ),
         //이미지 opacity를 변경하는 floating button
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
-              _visible =!_visible;
+              _visible = !_visible;
             });
           },
           tooltip: 'Toggle Opacity',
           child: const Icon(Icons.flip),
-        )
-    );
+        ));
   }
 }
 
@@ -330,8 +329,9 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
 //페이지 route 전환 애니메이션
 Route _createRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const AnimationScreen(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child){
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const AnimationScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = const Offset(0.0, 1.0);
       var end = Offset.zero;
       var curve = Curves.ease;
