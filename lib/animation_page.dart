@@ -21,6 +21,7 @@ class AnimationScreen extends StatelessWidget {
 
 class DraggableCard extends StatefulWidget {
   final Widget child;
+
   const DraggableCard({super.key, required this.child});
 
   @override
@@ -28,7 +29,7 @@ class DraggableCard extends StatefulWidget {
 }
 
 class _DraggableCardState extends State<DraggableCard>
-    with SingleTickerProviderStateMixin{
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Alignment _dragAlignment = Alignment.center;
   late Animation<Alignment> _animation;
@@ -38,7 +39,7 @@ class _DraggableCardState extends State<DraggableCard>
     super.initState();
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
-    _controller.addListener((){
+    _controller.addListener(() {
       setState(() {
         _dragAlignment = _animation.value;
       });
