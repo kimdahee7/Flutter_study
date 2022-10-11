@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'animation_screen.dart';
+import 'animation_screen2.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -61,9 +62,15 @@ class _MainScreenState extends State<MainScreen> {
             textSection,
             //페이지 route 전환 애니메이션 버튼
             ElevatedButton(
-              child: const Text('Go'),
+              child: const Text('Animation1'),
               onPressed: () {
                 Navigator.of(context).push(_createRoute());
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Animation2'),
+              onPressed: () {
+                Navigator.of(context).push(_createRoute2());
               },
             ),
           ],
@@ -184,11 +191,31 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   }
 }
 
-//페이지 route 전환 애니메이션
+//Animation1 페이지 route 전환 애니메이션
 Route _createRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
     const AnimationScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = const Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+      //Tween과 CurveTween chain()으로 결합
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      //var offsetAnimation = animation.drive(tween);
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+//Animation2 페이지 route 전환 애니메이션
+Route _createRoute2() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+    const AnimationScreen2(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = const Offset(0.0, 1.0);
       var end = Offset.zero;

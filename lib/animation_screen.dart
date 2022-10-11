@@ -8,7 +8,7 @@ class AnimationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Flutter Animation"),
+        title: const Text("Flutter Animation1"),
       ),
       body: const DraggableCard(
         child: FlutterLogo(
