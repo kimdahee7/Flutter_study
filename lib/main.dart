@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prac_flutter/randomwords_page.dart';
+import 'package:prac_flutter/randomwords_screen.dart';
 
 //첫 번째 앱 작성하기
 void main() => runApp(const MyApp());

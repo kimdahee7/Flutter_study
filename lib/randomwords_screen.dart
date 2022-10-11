@@ -1,6 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'main_page.dart';
+import 'main_screen.dart';
 
 class RandomWords extends StatefulWidget {
   const RandomWords({super.key});

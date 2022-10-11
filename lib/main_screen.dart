@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'animation_page.dart';
+import 'animation_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
