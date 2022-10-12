@@ -215,7 +215,7 @@ Route _createRoute() {
 Route _createRoute2() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
-    const AnimationScreen2(),
+    const AnimatedContainerApp(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = const Offset(0.0, 1.0);
       var end = Offset.zero;
