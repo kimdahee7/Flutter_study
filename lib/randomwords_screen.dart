@@ -21,7 +21,7 @@ class RandomWordsState extends State<RandomWords> {
         title: const Text("Startup Name Generator"),
         actions: [
           IconButton(
-            icon: const Icon(Icons.list),
+            icon: const Icon(Icons.favorite_border),
             onPressed: _pushSaved,
             tooltip: 'Saved Suggestions',
           ),
@@ -35,21 +35,22 @@ class RandomWordsState extends State<RandomWords> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue
-              ),
+              decoration: BoxDecoration(color: Colors.blue),
               child: Text('Drawer Header'),
             ),
             ListTile(
-              title: const Text('Item 1'),
+              title: const Text('Home'),
               onTap: () {
-                //close the drawer
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MainScreen()),
+                );
               },
             ),
             ListTile(
               title: const Text('Item 2'),
               onTap: () {
+                //close the drawer
                 Navigator.pop(context);
               },
             ),
@@ -64,7 +65,7 @@ class RandomWordsState extends State<RandomWords> {
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
           final tiles = _saved.map(
-                (pair) {
+            (pair) {
               return ListTile(
                 title: Text(
                   pair.asPascalCase,
@@ -75,25 +76,13 @@ class RandomWordsState extends State<RandomWords> {
           );
           final divided = tiles.isNotEmpty
               ? ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList()
+                  context: context,
+                  tiles: tiles,
+                ).toList()
               : <Widget>[];
           return Scaffold(
             appBar: AppBar(
               title: const Text('Saved Suggestions'),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.home),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const MainScreen()),
-                    );
-                  },
-                  tooltip: 'flutter layout',
-                ),
-              ],
             ),
             body: ListView(children: divided),
           );
