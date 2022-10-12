@@ -104,6 +104,16 @@ class RandomWordsState extends State<RandomWords> {
         semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
       ),
       onTap: () {
+        //좋아요 아이콘 클릭 시 snackbar 생성
+        const snackBar1 = SnackBar(
+          content: Text('Added to the list!'),
+        );
+        const snackBar2 = SnackBar(
+          content: Text('Removed from the list'),
+        );
+        alreadySaved
+            ? ScaffoldMessenger.of(context).showSnackBar(snackBar2)
+            : ScaffoldMessenger.of(context).showSnackBar(snackBar1);
         setState(() {
           //setState()를 호출하면 State 객체의 build() 메서드가 호출되고
           //그 결과로 UI를 갱신하게 된다.
