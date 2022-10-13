@@ -1,5 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:prac_flutter/tabbar_screen.dart';
+
 import 'main_screen.dart';
 
 class RandomWords extends StatefulWidget {
@@ -48,10 +50,14 @@ class RandomWordsState extends State<RandomWords> {
               },
             ),
             ListTile(
-              title: const Text('Item 2'),
+              title: const Text('TabBar'),
               onTap: () {
-                //close the drawer
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TabBarScreen()),
+                  //close the drawer
+                  //Navigator.pop(context);
+                );
               },
             ),
           ],
