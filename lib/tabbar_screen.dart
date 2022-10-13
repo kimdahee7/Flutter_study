@@ -11,9 +11,9 @@ class TabBarScreen extends StatelessWidget {
         appBar: AppBar(
           bottom: const TabBar(
             tabs: [
-              Tab(icon: Icon(Icons.directions_car)),
-              Tab(icon: Icon(Icons.directions_transit)),
-              Tab(icon: Icon(Icons.directions_bike)),
+              Tab(icon: Icon(Icons.directions_car, color: Colors.blue)),
+              Tab(icon: Icon(Icons.directions_transit, color: Colors.blue)),
+              Tab(icon: Icon(Icons.directions_bike, color: Colors.blue)),
             ],
           ),
           title: const Text('Tabs Demo'),
