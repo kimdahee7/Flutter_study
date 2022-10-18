@@ -20,7 +20,7 @@ class TabBarScreen extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            MyCustemForm(),
+            MyCustomForm(),
             Icon(Icons.directions_transit),
             Icon(Icons.directions_bike),
           ],
@@ -30,14 +30,14 @@ class TabBarScreen extends StatelessWidget {
   }
 }
 
-class MyCustemForm extends StatefulWidget {
-  const MyCustemForm({super.key});
+class MyCustomForm extends StatefulWidget {
+  const MyCustomForm({super.key});
 
   @override
   MyCustomFormState createState() => MyCustomFormState();
 }
 
-class MyCustomFormState extends State<MyCustemForm> {
+class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
