@@ -41,13 +41,13 @@ class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   //버튼 클릭 시 텍스트 필드 포커스
   //1.FocusNode 생성
-  late FocusNode myFocusNode;
+  FocusNode myFocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-
-    myFocusNode = FocusNode();
+    //Field 'myFocusNode' has not been initialized 오류 해결하기 위해 위에 선언해줌
+    //myFocusNode = FocusNode();
   }
 
   @override
