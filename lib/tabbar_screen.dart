@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prac_flutter/tabbar_mycustomform_screen.dart';
+import 'package:prac_flutter/tabbar_mycustomlist_screen.dart';
 
 class TabBarScreen extends StatelessWidget {
   const TabBarScreen({super.key});
@@ -22,7 +23,7 @@ class TabBarScreen extends StatelessWidget {
         body: const TabBarView(
           children: [
             MyCustomForm(),
-            Icon(Icons.directions_transit),
+            MyCustomList(),
             Icon(Icons.directions_bike),
           ],
         ),
